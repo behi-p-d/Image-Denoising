@@ -1,5 +1,4 @@
-# Image-Denoising
-
+#  Image Denoising
 
 A comparative study of CNN autoencoder architectures and loss functions for mixed-noise image denoising on the BSD500 dataset.
 
@@ -26,17 +25,17 @@ The project uses the **BSD500** dataset for training, validation, and testing.
 
 The dataset is organized into:
 
-
+```text
 data/
 └── images/
     ├── train/
     ├── val/
     └── test/
-
+```
 
 The dataset itself is **not included in this repository**. Please obtain BSD500 separately and place the images in the directory structure above.
 
-Images are processed as 128 × 128 RGB images.
+Images are processed as `128 × 128` RGB images.
 
 ## Noise Model
 
@@ -60,11 +59,11 @@ MSE measures the pixel-wise difference between the reconstructed and clean image
 
 The hybrid loss combines pixel-level reconstruction accuracy with structural similarity:
 
-
+```text
 Hybrid Loss = α × MSE + (1 − α) × (1 − SSIM)
+```
 
-
-where α = 0.8.
+where `α = 0.8`.
 
 The hybrid loss is applied to the Residual CNN Autoencoder after selecting the best architecture using MSE.
 
@@ -85,11 +84,11 @@ The experiments are organized into two stages.
 
 All three architectures are trained using MSE:
 
-
+```text
 Shallow AE  ──┐
 Deep AE     ──┼──► MSE ──► PSNR / SSIM
 Residual AE ──┘
-
+```
 
 The results are compared to determine the best-performing architecture.
 
@@ -97,7 +96,7 @@ The results are compared to determine the best-performing architecture.
 
 The best architecture, the Residual Autoencoder, is trained using the hybrid MSE–SSIM loss and compared with its MSE-trained counterpart:
 
-
+```text
 Residual AE + MSE
         │
         ├──► PSNR
@@ -109,7 +108,7 @@ Residual AE + Hybrid MSE–SSIM
         ├──► PSNR
         ├──► SSIM
         └──► Inference Time
-
+```
 
 This separates the effect of **architecture** from the effect of **loss function**.
 
@@ -124,22 +123,22 @@ The project generates:
 
 Generated results are stored in:
 
-
+```text
 results/
 ├── histories/
 ├── plots/
 └── tables/
-
+```
 
 A qualitative comparison contains:
 
-
+```text
 Original | Noisy | Shallow AE | Deep AE | Residual AE | Residual AE (Hybrid)
-
+```
 
 ## Project Structure
 
-
+```text
 cnn-autoencoder-image-denoising/
 │
 ├── data/
@@ -176,17 +175,17 @@ cnn-autoencoder-image-denoising/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-
+```
 
 ## Reproducibility
 
 The project uses a fixed random seed:
 
-
+```text
 SEED = 42
+```
 
-
-Training and evaluation settings are centralized in config.py.
+Training and evaluation settings are centralized in `config.py`.
 
 The experiment pipeline saves:
 
@@ -212,11 +211,10 @@ The main dependencies include:
 * Pandas
 * Jupyter
 
-See requirements.txt for the complete dependency list and versions.
+See `requirements.txt` for the complete dependency list and versions.
 
 ## License
 
-This project is licensed under the **MIT License**. See the LICENSE file for details.
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
 
 The BSD500 dataset is not distributed with this repository and remains subject to its own terms of use.
-
